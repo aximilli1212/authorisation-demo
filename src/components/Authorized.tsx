@@ -9,7 +9,7 @@ interface Props {
     user: User;
 }
 
-export const Authorized = ({ authorizedRoles, children, user }: Props) => {
+const Authorized: React.FC<Props> = ({ authorizedRoles, children, user }) => {
     const { isAdmin, isOfficer } = useAuth(user);
 
     if (authorizedRoles.includes("ADMIN") && !isAdmin) return <Forbidden />;
@@ -18,3 +18,5 @@ export const Authorized = ({ authorizedRoles, children, user }: Props) => {
 
     return <>{children}</>;
 };
+
+export default Authorized;

@@ -7,11 +7,11 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ user, dashboardText }) => {
-    return user.role === "ADMIN" || user.role === "OFFICER" ? (
-        <div>{dashboardText}</div>
-    ) : (
-        <div>Forbidden</div>
-    );
+    return  (
+        <div>
+            <div>{dashboardText}</div>
+        </div>
+    )
 };
 
 export default Dashboard;
