@@ -1,6 +1,7 @@
 import { Forbidden } from "./Forbidden";
 import { User } from "../types/User";
 import React from "react";
+import { useAuthorization } from "../hooks/useAuthorization";
 
 interface Props {
     authorizedRoles: Array<string>;
@@ -9,9 +10,9 @@ interface Props {
 }
 
 const Authorized:React.FC<Props> = ({authorizedRoles,children,user}) => {
-    if (!authorizedRoles.includes(user.role)) return <Forbidden />;
+    const isAuthorized = useAuthorization(authorizedRoles, user);
+    if (!isAuthorized) return <Forbidden />;
     return (<>{children}</>);
 };
-
 
 export default Authorized;
