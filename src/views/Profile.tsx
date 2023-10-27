@@ -7,7 +7,7 @@ type ProfileProps = {
 
 const Profile: React.FC<ProfileProps> = ({ user }) => {
     return (
-                <div>
+                <div style={{border: '1px solid gray'}}>
                     <p>{user.name}</p>
                     <p>{user.role}</p>
                 </div>

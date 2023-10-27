@@ -1,13 +1,11 @@
 import Dashboard from "./views/Dashboard";
 import Profile from "./views/Profile";
 import {User} from "./types/User";
+import Authorized from "./components/Authorized";
 
 const dashboardText = "Dashboard User";
-//
-// interface User {
-//     name: string;
-//     role: 'ADMIN' | 'OFFICER';
-// }
+let profileAuthorisedRoles: Array<string> = ['OFFICER', 'OTHER'] ;
+const dashboardAuthorisedRoles: Array<string> = ['ADMIN', 'OFFICER'];
 
 const user: User = {
     name: 'Maria',
@@ -17,8 +15,13 @@ const user: User = {
 export default function App() {
   return (
       <div className="App">
-        <Dashboard user={user} dashboardText={dashboardText} />
-        <Profile user={user} />
+          <Authorized authorizedRoles={dashboardAuthorisedRoles} user={user} >
+              <Dashboard user={user} dashboardText={dashboardText} />
+          </Authorized>
+
+          <Authorized authorizedRoles={profileAuthorisedRoles} user={user} >
+              <Profile user={user} />
+          </Authorized>
       </div>
   );
 }
